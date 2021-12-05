@@ -1,15 +1,13 @@
 import React from "react";
+import InputArea from "./inputarea";
 import Todoitem from "./todoitem";
 
 function App() {
   const [input, setInput] = React.useState();
   const [items, setItems] = React.useState([]);
 
-  function change(data) {
-    const value = data.target.value;
-    setInput(value);
-  }
-  function set() {
+
+  function addItem(input) {
     setItems((prev) => {
       if (input === "") {
         return [...prev];
@@ -17,7 +15,6 @@ function App() {
         return [input, ...prev];
       }
     });
-    setInput("");
   }
 
   function deleteItem(index) {
@@ -35,12 +32,7 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input onChange={change} value={input} type="text" />
-        <button onClick={set}>
-          <span>Add</span>
-        </button>
-      </div>
+      <InputArea  set={addItem}  />
       <div>
         <ul>
           {items.map((item,index) => (
