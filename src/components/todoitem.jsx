@@ -4,15 +4,19 @@ import React from "react";
 
 function Todoitem(props){
 
-    const [isDone, setIsDone] = React.useState(false);
+    // const [isDone, setIsDone] = React.useState(false);
 
-    function done() {
-        setIsDone(prev => !prev);
-    }
+    // function done() {
+    //     setIsDone(prev => !prev);
+    // }
     return(
-        <div onClick={ done }>
+        <div 
+            onClick={()=>{
+                props.done(props.id);
+            }}
+        >
 
-        <li style={{textDecoration: isDone ? "line-through" : "none"}}>{props.item} </li>
+        <li>{props.item} </li>
         </div>
     )
 }
